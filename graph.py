@@ -78,7 +78,7 @@ class Graph(object):
 					pass
 				
 				else:
-					T_matrix[index_i][index_j] = 9999
+					T_matrix[index_i][index_j] = self.INT_MAX
 					pass
 
 		for	index_k in range(1, self.size):
@@ -91,6 +91,30 @@ class Graph(object):
 
 		for	index_i in range(1, self.size):
 			for index_j in range(1, self.size):
-				if(T_matrix[index_i][index_j] == 9999):
+				if(T_matrix[index_i][index_j] == self.INT_MAX):
 					return False
+		return True
+
+	def Regular_graph(self):
+		index_j = 1
+		c = 0
+		b = 0
+		index_i = 2
+		for index_i in range(1, self.size):
+			if self.adjency_matrix[1][index_i] != 0:
+				c += 1
+
+		while( index_i <= self.size ):
+			while( index_j <= self.size):
+				
+				if self.adjency_matrix[index_i][index_j] != 0:
+					b += 1
+					pass
+
+				index_j += 1
+			index_i += 1
+			if(c != b):
+				return False
+			c = b
+		print(str(c) + "-regular graph ")
 		return True
