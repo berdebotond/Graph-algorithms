@@ -53,6 +53,7 @@ class Graph(object):
 		print("Adjency matrix")
 		for	indexi in range(0, self.size):
 			for indexj in range(0, self.size):
+		
 				print(self.adjency_matrix[indexi][indexj], end= ' ')
 			print()
 
@@ -62,9 +63,28 @@ class Graph(object):
 		print("Incidence matrix")
 		for	indexi in range(0, self.size):
 			for indexj in range(0, self.edge_size):
+		
 				print(self.incidence_matrix[indexi][indexj], end= ' ')
 			print()		
 		pass
+
+	def Isolated_nodes(self):
+		nodes_edge_number = 0
+		izolated = True
+		print("Isolated nodes: ", end = ' ')
+		for index_i in range(1,self.size):
+			izolated = True
+
+			for index_j in range(1,self.size):
+				
+				if self.adjency_matrix[index_i][index_j] != 0:
+
+					izolated = False
+					pass
+			
+			if izolated:		
+				print(self.adjency_matrix[index_i][0], end = ', ' )
+		print()
 
 	def Warshall_Connectivity(self):
 
@@ -97,24 +117,23 @@ class Graph(object):
 
 	def Regular_graph(self):
 		index_j = 1
-		c = 0
-		b = 0
+		first_nodes_edge_number = 0
+		nodes_edge_number = 0
 		index_i = 2
 		for index_i in range(1, self.size):
 			if self.adjency_matrix[1][index_i] != 0:
-				c += 1
+				first_nodes_edge_number += 1
 
 		while( index_i <= self.size ):
 			while( index_j <= self.size):
 				
 				if self.adjency_matrix[index_i][index_j] != 0:
-					b += 1
+					nodes_edge_number += 1
 					pass
 
 				index_j += 1
 			index_i += 1
-			if(c != b):
+			if(first_nodes_edge_number != nodes_edge_number):
 				return False
-			c = b
-		print(str(c) + "-regular graph ")
+		print(str(nodes_edge_number) + "-regular graph ")
 		return True

@@ -8,14 +8,19 @@ test.addNode(3)
 test.addEdge(1,2)
 test.addEdge(2,3)
 test.addEdge(1,3)
+test.addNode(4)
+test.addNode(5)
+test.addNode(6)
 test.printIncidence()
 print("\n\n")
 test.printAdjency()
 
 if test.Warshall_Connectivity():
-	print("connected graph")
+	print("Connected graph")
 else:
-	print("disconnected graph")
+	print("Disconnected graph")
 
 if not test.Regular_graph() :
-	print("not regular")
+	print("Not regular")
+
+test.Isolated_nodes()
